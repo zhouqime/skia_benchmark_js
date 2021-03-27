@@ -1,15 +1,11 @@
-# 🚀 Welcome to your new awesome project!
+# 🚀 CanvasKit-wasm performace test!
 
-This project has been created using **webpack scaffold**, you can now run
-
-```
-npm run build
-```
-
-or
+Just use
 
 ```
 yarn build
+
+yarn serve
 ```
 
 to bundle your application
