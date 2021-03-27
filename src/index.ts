@@ -120,8 +120,8 @@ cki_fn({
     locateFile: (file:string) => file
 }).then((ck:CanvasKit)=>{
     CanvasKit = ck;
-    canvaskitElement =  document.getElementById("gpu") as HTMLCanvasElement;
-    canvas2dElement = document.getElementById("cpu") as HTMLCanvasElement;
+    canvaskitElement =  document.getElementById("canvaskit") as HTMLCanvasElement;
+    canvas2dElement = document.getElementById("canvas2d") as HTMLCanvasElement;
     resizeCanvas();
     lines = makeLines(100000);
     CanvasKitDraw();
