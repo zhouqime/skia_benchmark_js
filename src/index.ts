@@ -115,6 +115,20 @@ function Canvas2dDraw() {
     console.log("Canvas2D:" + (Date.now() - time));
     
 }
+function stringDownload(content:string, filename:string) {
+    // 创建隐藏的可下载链接
+    var eleLink = document.createElement('a');
+    eleLink.download = filename;
+    eleLink.style.display = 'none';
+    // 字符内容转变成blob地址
+    var blob = new Blob([content]);
+    eleLink.href = URL.createObjectURL(blob);
+    // 触发点击
+    document.body.appendChild(eleLink);
+    eleLink.click();
+    // 然后移除
+    document.body.removeChild(eleLink);
+};
 
 cki_fn({
     locateFile: (file:string) => file
@@ -124,6 +138,7 @@ cki_fn({
     canvas2dElement = document.getElementById("canvas2d") as HTMLCanvasElement;
     resizeCanvas();
     lines = makeLines(100000);
+    // stringDownload(JSON.stringify(lines),"lines.json")
     CanvasKitDraw();
     Canvas2dDraw();
 });
