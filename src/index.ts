@@ -1,6 +1,6 @@
 import { Canvas, CanvasKit, CanvasKitInit, Color, Surface } from "canvaskit-wasm";
 console.log('Hello World from your main file!');
-const cki_fn = require('canvaskit-wasm/bin/full/canvaskit.js')
+const cki_fn = require('canvaskit-wasm/bin/full/canvaskit.js') as typeof CanvasKitInit
 
 var canvaskitElement:HTMLCanvasElement = null;
 var canvas2dElement:HTMLCanvasElement = null;
@@ -47,13 +47,16 @@ class LineInfo {
 var lines: Array<LineInfo> = null;
 
 function makeLines(count:number):Array<LineInfo>{
+    const time = Date.now();
+
     var r = new Array<LineInfo>();
     
     for (let index = 0; index < count; index++) {
         r.push(new LineInfo(canvaskitElement!.width,canvaskitElement!.height,Math.PI * 0.25));
     }
-
+    console.log("Make lines:" + (Date.now() - time));
     return r;
+    
 }
 
 function CanvasKitDraw(){
@@ -101,6 +104,7 @@ function Canvas2dDraw() {
     context.fillStyle = "#FFFFFFFF";
     context.fillRect(0,0,canvas2dElement?.width,canvas2dElement?.height);
     context.lineCap = "round";
+    
     const time = Date.now();
 
     for (const l of lines) {
@@ -111,7 +115,7 @@ function Canvas2dDraw() {
         context.lineTo(l.x2,l.y2);
         context.stroke();
     }
-    
+    canvas2dElement?.toDataURL();
     console.log("Canvas2D:" + (Date.now() - time));
     
 }
